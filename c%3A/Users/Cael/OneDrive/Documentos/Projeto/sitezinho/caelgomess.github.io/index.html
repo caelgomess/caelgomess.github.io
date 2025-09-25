@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Um Cantinho Especial para Meu Amor</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            color: #fff;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 600px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            animation: fadeIn 2s ease;
+            position: relative;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            animation: pop 1s ease, text-shadow-pop 2s infinite alternate;
+        }
+        p {
+            font-size: 1.3em;
+            line-height: 1.6em;
+            margin-bottom: 30px;
+        }
+        .hidden-message {
+            display: none;
+            font-size: 1.4em;
+            margin-top: 20px;
+            color: #fddde6;
+            animation: fadeIn 2s ease;
+        }
+        .reveal-button {
+            background-color: #ffffff;
+            color: #e52165;
+            padding: 15px 30px;
+            border: 2px solid #e52165;
+            border-radius: 25px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .reveal-button:hover {
+            background-color: #fdeff2;
+            transform: scale(1.1);
+        }
+        .photo-placeholder {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            margin: 0 auto 20px;
+            border: 5px solid #fff;
+            box-shadow: 0 0 15px rgba(255,255,255,0.8);
+            object-fit: cover;
+        }
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        @keyframes pop {
+            0% {transform: scale(0);}
+            50% {transform: scale(1.1);}
+            100% {transform: scale(1);}
+        }
+        @keyframes text-shadow-pop {
+            0% {text-shadow: 0 0 10px #fff, 0 0 20px #ffc0cb;}
+            100% {text-shadow: 0 0 20px #fff, 0 0 30px #ffc0cb, 0 0 40px #ffc0cb;}
+        }
+        .emoji {
+            font-size: 2.5em;
+            margin: 15px;
+            animation: float 3s ease-in-out infinite;
+            display: inline-block;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .emoji:hover {
+            transform: scale(1.2);
+        }
+        @keyframes float {
+            0% {transform: translateY(0);}
+            50% {transform: translateY(-15px);}
+            100% {transform: translateY(0);}
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="foto.jpg" alt="Foto do casal" class="photo-placeholder">
+        <h1>💖 Um Poema Para Você, Meu Amor 💖</h1>
+        <p>
+            Cada momento ao seu lado é um verso de felicidade, <br>
+            e em cada olhar seu, encontro a mais bela rima.
+        </p>
+        <button class="reveal-button" onclick="revealMessage()">❤️ Clique em mim! ❤️</button>
+        <p class="hidden-message" id="special-message">
+            Você é a melodia que embala meus dias e a estrela que guia minhas noites. <br>
+            Com todo meu amor, hoje e sempre.
+        </p>
+        <div>
+            <span class="emoji" onclick="revealEmojiMessage('flower')">🌸</span>
+            <span class="emoji" onclick="revealEmojiMessage('heart')">💞</span>
+            <span class="emoji" onclick="revealEmojiMessage('sparkle')">✨</span>
+        </div>
+        <p style="font-size: 1em; margin-top: 10px; margin-bottom: 10px;">Aperte nos emojis acima e veja algo importante.</p>
+        <p class="hidden-message" id="flower-message">Esta flor representa a beleza e a delicadeza do nosso amor, que floresce a cada dia.</p>
+        <p class="hidden-message" id="heart-message">Meu coração bate mais forte por você. Você é a razão da minha felicidade!</p>
+        <p class="hidden-message" id="sparkle-message">Você trouxe um brilho mágico para a minha vida. Te amo mais que tudo!</p>
+    </div>
+
+    <script>
+        const specialMessage = document.getElementById('special-message');
+        const emojiMessages = {
+            flower: document.getElementById('flower-message'),
+            heart: document.getElementById('heart-message'),
+            sparkle: document.getElementById('sparkle-message')
+        };
+
+        function hideAllMessages() {
+            specialMessage.style.display = 'none';
+            for (const key in emojiMessages) {
+                emojiMessages[key].style.display = 'none';
+            }
+        }
+
+        function revealMessage() {
+            const isVisible = specialMessage.style.display === 'block';
+            hideAllMessages();
+            if (!isVisible) {
+                specialMessage.style.display = 'block';
+            }
+        }
+
+        function revealEmojiMessage(emojiType) {
+            const targetMessage = emojiMessages[emojiType];
+            const isVisible = targetMessage.style.display === 'block';
+            hideAllMessages();
+            if (!isVisible) {
+                targetMessage.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
